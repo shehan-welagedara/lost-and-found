@@ -4,16 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Details</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1 class="my-4">Item Details</h1>
-        <p><strong>Name:</strong> {{ item.name }}</p>
-        <p><strong>Date:</strong> {{ item.date }}</p>
-        <p><strong>Description:</strong> {{ item.description }}</p>
-        <p><strong>Status:</strong> {{ item.status }}</p>
-        <!-- Add more details here if needed -->
+    <div class="container mt-5">
+        <h1 class="text-center text-primary mb-4">Item Details</h1>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Name:</strong> {{ item_details.name }}</li>
+                    <li class="list-group-item"><strong>Location:</strong> {{ item_details.location }}</li>
+                    <li class="list-group-item"><strong>Date:</strong> {{ item_details.date }}</li>
+                    <li class="list-group-item"><strong>Description:</strong> {{ item_details.description }}</li>
+                    <li class="list-group-item"><strong>Contact:</strong> <span class="text-primary">{{ item_details.contact_number }}</span></li>
+                    {% if item_details.photo %}
+                        <li class="list-group-item"><img src="data:image/jpeg;base64,{{ item_details.photo | b64encode }}" class="img-fluid" alt="Item Photo"></li>
+                    {% endif %}
+                </ul>
+                <a href="{{ url_for('index') }}" class="btn btn-primary mt-3">Back to Home</a>
+            </div>
+        </div>
     </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
